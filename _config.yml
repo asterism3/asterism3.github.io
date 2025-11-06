@@ -26,10 +26,10 @@ description: >- # used by seo meta and the atom feed
 url: "https://asterlite3.github.io"
 
 github:
-  username: asterlite3 # change to your GitHub username
+  username: asterism3 # change to your GitHub username
 
 twitter:
-  username: TopaZ_234 # change to your Twitter username
+  username:  # change to your Twitter username
 
 social:
   # Change to your full name.
@@ -38,7 +38,7 @@ social:
   email: apricot3616@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/TopaZ_234 # change to your Twitter homepage
+    - https://twitter.com/ # change to your Twitter homepage
     - https://github.com/asterlite3 # change to your GitHub homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
@@ -170,7 +170,6 @@ collections:
   tabs:
     output: true
     sort_by: order
-
 defaults:
   - scope:
       path: "" # An empty string here means all files in the project
