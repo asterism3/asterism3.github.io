@@ -16,7 +16,7 @@ I am asterlite, a obsidian enthusiast, an avid non-fiction reader, and a high sc
 ***Some stuff you will find interesting:***
 [How I think](https://asterism3.github.io/archives/)
 [My World Domination Projects](https://github.com/asterism3/example)
-[My Booklist]
+[My Booklist](https://www.goodreads.com/user/show/173777937)
 [Baking is Funnn](https://asterism3.github.io/food)
 [My Art Gallary](https://asterism3.github.io/artworks/)
 [Feeling lucky?](https://asterism3.github.io/dice/)
