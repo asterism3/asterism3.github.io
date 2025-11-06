@@ -101,7 +101,7 @@ cdn:
 avatar: 'https://pbs.twimg.com/profile_images/1986364167977074688/0XsDut8d_400x400.jpg'
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
-# It can be overridden by a customized `page.image` in front matter.
+# It can be overridden by a customized `page.image` in front matter.d
 social_preview_image: # string, local or CORS resources
 
 # boolean type, the global switch for TOC in posts.
