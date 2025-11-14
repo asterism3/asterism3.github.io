@@ -5,7 +5,7 @@ order: 4
 ---
 
 # Hello!
-I am asterlite, a obsidian enthusiast, an avid non-fiction reader, and a high school senior. I've been sipping Matcha long before the hype.
+I am asterlite, an [Obsidian](https://obsidian.md/) enthusiast, an avid non-fiction reader, and a high school senior. I've been sipping Matcha long before the hype.
 
 ***Here are a few fun facts about me, there is only 1 of which is true, make a guess!***
 1. I am 6 feet tall;
