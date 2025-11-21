@@ -13,7 +13,30 @@ I am asterlite, an [Obsidian](https://obsidian.md/) enthusiast, an avid non-fict
 3. I love bungie jumping;
 4. I can solve a *Hell* sudoku on sudoku.coach in 4 minutes.
 
-***Some stuff you will find interesting:***
+# My projects
+
+## [The Bullcity Wood Shop](https://airtable.com/appOfS7j1FxDtYQJx/paglLNTv0LRmnSQdl?YNWCo=sfsgqAwTeXSLGzPBa)
+- Nov 2025
+- Created the volunteer information digital database, digitalized the attendance o students and volunteeers, automate a lof of progress, cleaned the data, established a framwrok, improve the grants with data viualization with Airtable, Jaascript, python.
+
+## [Sprouts Ai STudio](https://www.sproutai.com)
+- Dec 2025
+
+## [Obsidian heatmap trackerPlugin](placeholder)
+- Dec 2025
+- Contributed new features and bug fixed (pull requests) for a plugin that's used by over 10000 people.
+
+##[Psyfy](https://www.psyfy.ai/)
+- Sep 2025
+- social media marketing & developer team
+
+##[The Adorette Club](placeholder)
+- Nov 2025
+- founder of a empowerment group for women and girls with adhd
+- chief developer of the adorette app
+- collaborate with UNC neuroscience research expert groups
+
+## Some stuff you will find interesting:
 [How I think](https://asterism3.github.io/archives/)
 
 [My World Domination Projects](https://github.com/asterism3/example)
