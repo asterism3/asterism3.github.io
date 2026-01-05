@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Interactive World</title>
+    <title>Athena Xie - Interactive Portfolio</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -117,10 +117,29 @@
 </head>
 <body>
 
+    <div id="background-text" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none z-0 w-full px-4 select-none">
+        <!-- Lines will be populated by JS -->
+        <h1 id="line1" class="text-4xl md:text-5xl font-bold text-slate-600 mb-2 min-h-[1.5em]"></h1>
+        <h2 id="line2" class="text-5xl md:text-7xl font-extrabold text-slate-200 mb-4 min-h-[1.2em] tracking-tight drop-shadow-lg"></h2>
+        <p id="line3" class="text-sm md:text-lg text-slate-400 font-medium min-h-[1.5em] max-w-2xl mx-auto tracking-wide"></p>
+    </div>
+
     <div id="canvas-container"></div>
     
     <div class="instruction">
         DRAG & THROW BLOCKS • CLICK TO OPEN
+    </div>
+
+    <!-- Control Buttons -->
+    <div class="fixed top-4 right-4 z-50 flex gap-3">
+        <button id="gravity-toggle" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border border-slate-600 font-medium transition-all flex items-center gap-2 shadow-lg">
+            <span class="text-lg">🌍</span>
+            <span id="gravity-text">Gravity: ON</span>
+        </button>
+        <button id="reset-btn" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg font-medium transition-all flex items-center gap-2 shadow-lg">
+            <span class="text-lg">🔄</span>
+            <span>Reset</span>
+        </button>
     </div>
 
     <!-- Modals for each section -->
@@ -129,18 +148,14 @@
             <button class="close-btn">&times;</button>
             <h2 class="text-3xl font-bold mb-4 text-cyan-400">My Projects</h2>
             <div class="space-y-4">
-                <div class="p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition">
-                    <h3 class="text-xl font-bold">Project Alpha</h3>
-                    <p class="text-slate-400">A physics-based game engine built from scratch.</p>
-                </div>
-                <div class="p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition">
-                    <h3 class="text-xl font-bold">Neural Net Visualizer</h3>
-                    <p class="text-slate-400">Interactive web tool to see how AI learns.</p>
-                </div>
-                <div class="p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition">
-                    <h3 class="text-xl font-bold">EcoTracker</h3>
-                    <p class="text-slate-400">Mobile app for tracking carbon footprint.</p>
-                </div>
+                <a href="https://asterism3.github.io/PoopTracker" target="_blank" rel="noopener noreferrer" class="block p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition group cursor-pointer">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-cyan-400 group-hover:text-cyan-300">💩 Poop Master</h3>
+                        <span class="text-slate-400 group-hover:text-cyan-400 transition">↗</span>
+                    </div>
+                    <p class="text-slate-400 mt-2">A poop tracker app. Yes, you read that right. Track your digestive health with style!</p>
+                    <span class="text-cyan-400/70 text-sm mt-2 inline-block">asterism3.github.io/PoopTracker</span>
+                </a>
             </div>
         </div>
     </div>
@@ -170,16 +185,45 @@
         <div class="modal-content">
             <button class="close-btn">&times;</button>
             <h2 class="text-3xl font-bold mb-4 text-yellow-400">Blogs</h2>
-            <article class="mb-6 border-b border-slate-700 pb-4">
-                <h3 class="text-xl font-bold mb-2">The Future of Web Interactivity</h3>
-                <p class="text-slate-400 text-sm mb-2">October 24, 2023</p>
-                <p class="text-slate-300">Why flat websites are becoming a thing of the past and how physics brings life to UI.</p>
+            <article id="blog-babysitting" class="mb-6 border-b border-slate-700 pb-4 cursor-pointer hover:bg-slate-800/50 rounded-lg p-4 -m-4 transition-all">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="px-2 py-1 bg-yellow-400/20 text-yellow-400 text-xs rounded-full">blog</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2 group-hover:text-yellow-400">Babysitting</h3>
+                <p class="text-slate-400 text-sm mb-2">November 6, 2025</p>
+                <p class="text-slate-300 line-clamp-2">I used to be a terrible babysitter. Then I realized it wasn't about the kids...</p>
+                <span class="text-yellow-400 text-sm mt-2 inline-block">Click to read more →</span>
             </article>
-            <article class="mb-6 border-b border-slate-700 pb-4">
-                <h3 class="text-xl font-bold mb-2">Learning 3D Modeling</h3>
-                <p class="text-slate-400 text-sm mb-2">September 12, 2023</p>
-                <p class="text-slate-300">My journey into Blender and how it changed my design perspective.</p>
-            </article>
+        </div>
+    </div>
+
+    <!-- Full Blog Post Modal -->
+    <div id="modal-blog-babysitting" class="modal">
+        <div class="modal-content max-w-2xl">
+            <button class="close-btn">&times;</button>
+            <div class="flex items-center gap-2 mb-4">
+                <span class="px-2 py-1 bg-yellow-400/20 text-yellow-400 text-xs rounded-full">blog</span>
+                <span class="text-slate-400 text-sm">November 6, 2025</span>
+            </div>
+            <h2 class="text-3xl font-bold mb-6 text-yellow-400">Babysitting</h2>
+            <div class="prose prose-invert max-w-none space-y-4 text-slate-300 leading-relaxed">
+                <p class="text-xl text-slate-200 font-medium italic">I used to be a terrible babysitter. Then I realized it wasn't about the kids.</p>
+                
+                <p>When I babysit, I never know what to do. I give the kids an iPad, a few candies, and pray for peace. But when they cry, no gadget can save me—just that panicky feeling of "I have no idea what to do."</p>
+                
+                <p>I used to think babysitting was about entertainment. Now I realize it's about control, the kind that calms rather than commands. When kids cry, they aren't always sad; they're scared. They're looking for a grown-up who has things under control. If you panic too, the balance collapses. You become an adult child, just as lost.</p>
+                
+                <p>Adulthood, it turns out, is the willingness to take responsibility for yourself and others. By helping kids do the hard thing when it's right, you're practicing your own self-control. Babysitting becomes less about keeping order and more about turning chaos into calm, discomfort into peace.</p>
+                
+                <p>What makes babysitting special is the power dynamic. Growing up, we either follow authority—parents, teachers, coaches—or share decisions with peers. But babysitting flips it. Suddenly you are the authority figure, and the kids expect certainty. When you give vague answers—"Maybe we'll play later?"—it doesn't feel like freedom to them; it feels like instability. They don't need options; they need clarity.</p>
+                
+                <p>And yet, kids aren't powerless. They have something adults often forget: <em>soft power</em>. Crying, whining, or simply looking adorable—these are their diplomacy tools, emotional levers that bend the atmosphere. The trick isn't to fight it but to respond with grounded compassion.</p>
+                
+                <p>Each tantrum, each messy snack time, is a lesson in leadership: staying calm, giving direction, listening, adjusting—being the reliable presence someone can follow. Babysitting, in that sense, is a rehearsal for growing up.</p>
+            </div>
+            <button class="back-to-blogs mt-6 text-yellow-400 hover:text-yellow-300 transition flex items-center gap-2">
+                ← Back to all blogs
+            </button>
         </div>
     </div>
 
@@ -277,21 +321,29 @@
 
         // Add random shapes for fun/aesthetic
         const randomShapes = [];
-        for (let i = 0; i < 15; i++) {
+        const themeColors = ['#22d3ee', '#f472b6', '#facc15', '#4ade80']; // Cyan, Pink, Yellow, Matcha Green
+
+        for (let i = 0; i < 20; i++) {
             const x = Math.random() * window.innerWidth;
             const y = Math.random() * window.innerHeight * 0.5; // Start top half
-            const size = Math.random() * 30 + 10;
+            const size = Math.random() * 25 + 10;
+            
+            // Mostly dark shapes, some colored ones for pop
+            const isColored = Math.random() > 0.7;
+            const color = isColored ? themeColors[Math.floor(Math.random() * themeColors.length)] : '#334155';
             
             let shape;
             if (Math.random() > 0.5) {
                 shape = Bodies.circle(x, y, size, {
-                    render: { fillStyle: '#334155' },
-                    restitution: 0.7
+                    render: { fillStyle: color },
+                    restitution: 0.7,
+                    frictionAir: 0.01
                 });
             } else {
                 shape = Bodies.polygon(x, y, Math.round(Math.random() * 5 + 3), size, {
-                    render: { fillStyle: '#1e293b' },
-                    restitution: 0.7
+                    render: { fillStyle: color },
+                    restitution: 0.7,
+                    frictionAir: 0.01
                 });
             }
             randomShapes.push(shape);
@@ -372,10 +424,47 @@
         const runner = Runner.create();
         Runner.run(runner, engine);
 
+        // Explosion Logic
+        const explosions = [];
+
+        function createExplosion(x, y, color) {
+            for (let i = 0; i < 20; i++) {
+                explosions.push({
+                    x: x,
+                    y: y,
+                    vx: (Math.random() - 0.5) * 15, // Higher velocity
+                    vy: (Math.random() - 0.5) * 15,
+                    life: 1.0,
+                    color: color,
+                    size: Math.random() * 5 + 3
+                });
+            }
+        }
+
         // Custom Rendering for Text and 3D Effect on Bodies
         Events.on(render, 'afterRender', function() {
             const ctx = render.context;
             
+            // Draw Explosions
+            for (let i = explosions.length - 1; i >= 0; i--) {
+                const p = explosions[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.life -= 0.03; // Fade out speed
+                
+                if (p.life <= 0) {
+                    explosions.splice(i, 1);
+                    continue;
+                }
+                
+                ctx.globalAlpha = p.life;
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.globalAlpha = 1.0;
+            }
+
             // We iterate over all bodies in the world to ensure we catch everything if needed, 
             // but for custom labels we only care about the menu items.
             // Using the specific 'bodies' array we created earlier is safer for this loop.
@@ -476,7 +565,13 @@
             
             // If moved less than 5 pixels, count as click
             if (dist < 5) {
+                const body = bodies.find(b => b.label === clickedBodyLabel);
+                if (body) {
+                    createExplosion(mouseUpPos.x, mouseUpPos.y, body.render.fillStyle);
+                }
+
                 const modalId = `modal-${clickedBodyLabel}`;
+                // Open modal immediately
                 openModal(modalId);
             }
             clickedBodyLabel = null;
@@ -507,6 +602,145 @@
                 event.target.classList.remove('active');
             }
         }
+
+        // Blog navigation - click to open full post
+        document.getElementById('blog-babysitting').addEventListener('click', () => {
+            document.getElementById('modal-blogs').classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('modal-blog-babysitting').classList.add('active');
+            }, 100);
+        });
+
+        // Back to blogs button
+        document.querySelector('.back-to-blogs').addEventListener('click', () => {
+            document.getElementById('modal-blog-babysitting').classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('modal-blogs').classList.add('active');
+            }, 100);
+        });
+
+        // Typing Animation
+        const typingSequence = [
+            { id: 'line1', text: "Heyo!", delay: 100 },
+            { id: 'line2', text: "I'm Athena Xie", delay: 100 },
+            { id: 'line3', text: "developer, matcha lover et.2026, dreamer, reader, high school senior studying in US", delay: 40 }
+        ];
+
+        // Inject styles for cursor
+        const typeStyle = document.createElement('style');
+        typeStyle.innerHTML = `
+            .typing-cursor::after {
+                content: '|';
+                animation: blink 1s step-end infinite;
+                color: #22d3ee;
+                margin-left: 4px;
+                vertical-align: baseline;
+            }
+            @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        `;
+        document.head.appendChild(typeStyle);
+
+        async function runTyping() {
+            // Initial delay
+            await new Promise(r => setTimeout(r, 800));
+
+            for (const step of typingSequence) {
+                const el = document.getElementById(step.id);
+                if (!el) continue;
+                
+                el.classList.add('typing-cursor');
+                
+                for (let i = 0; i < step.text.length; i++) {
+                    el.textContent = step.text.substring(0, i + 1);
+                    // Add variance to typing speed for realism
+                    const variance = Math.random() * 30 - 15;
+                    await new Promise(r => setTimeout(r, step.delay + variance));
+                }
+                
+                // Pause before next line
+                await new Promise(r => setTimeout(r, 500));
+                
+                // Remove cursor from finished line (except maybe the last one? or just remove all)
+                el.classList.remove('typing-cursor');
+            }
+            // Add static cursor to end of last line to show it's "live"
+            const lastLine = document.getElementById('line3');
+            if (lastLine) lastLine.classList.add('typing-cursor');
+        }
+
+        runTyping();
+
+        // Gravity Toggle
+        let gravityOn = true;
+        const gravityToggle = document.getElementById('gravity-toggle');
+        const gravityText = document.getElementById('gravity-text');
+
+        gravityToggle.addEventListener('click', () => {
+            gravityOn = !gravityOn;
+            engine.gravity.y = gravityOn ? 0.5 : 0;
+            
+            if (gravityOn) {
+                gravityText.textContent = 'Gravity: ON';
+                gravityToggle.classList.remove('bg-pink-600', 'hover:bg-pink-500');
+                gravityToggle.classList.add('bg-slate-800', 'hover:bg-slate-700');
+            } else {
+                gravityText.textContent = 'Gravity: OFF';
+                gravityToggle.classList.remove('bg-slate-800', 'hover:bg-slate-700');
+                gravityToggle.classList.add('bg-pink-600', 'hover:bg-pink-500');
+            }
+            
+            // Give all bodies a little push when gravity turns off for fun effect
+            if (!gravityOn) {
+                const allBodies = Composite.allBodies(world);
+                allBodies.forEach(body => {
+                    if (!body.isStatic) {
+                        Matter.Body.applyForce(body, body.position, {
+                            x: (Math.random() - 0.5) * 0.01,
+                            y: -0.02 * body.mass
+                        });
+                    }
+                });
+            }
+        });
+
+        // Reset Button
+        const resetBtn = document.getElementById('reset-btn');
+        
+        resetBtn.addEventListener('click', () => {
+            // Reset menu blocks to original positions
+            categories.forEach((cat, index) => {
+                const body = bodies[index];
+                const x = window.innerWidth * cat.x;
+                const y = window.innerHeight * cat.y;
+                
+                Matter.Body.setPosition(body, { x, y });
+                Matter.Body.setVelocity(body, { x: 0, y: 0 });
+                Matter.Body.setAngularVelocity(body, 0);
+                Matter.Body.setAngle(body, 0);
+            });
+            
+            // Reset random shapes to random top positions
+            randomShapes.forEach(shape => {
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight * 0.3;
+                
+                Matter.Body.setPosition(shape, { x, y });
+                Matter.Body.setVelocity(shape, { x: 0, y: 0 });
+                Matter.Body.setAngularVelocity(shape, 0);
+            });
+            
+            // Reset gravity to ON
+            if (!gravityOn) {
+                gravityOn = true;
+                engine.gravity.y = 0.5;
+                gravityText.textContent = 'Gravity: ON';
+                gravityToggle.classList.remove('bg-pink-600', 'hover:bg-pink-500');
+                gravityToggle.classList.add('bg-slate-800', 'hover:bg-slate-700');
+            }
+            
+            // Create a fun explosion effect at center
+            createExplosion(window.innerWidth / 2, window.innerHeight / 2, '#22d3ee');
+        });
 
     </script>
 </body>
