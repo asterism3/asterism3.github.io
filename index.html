@@ -117,8 +117,7 @@
 </head>
 <body>
 
-    <div id="background-text" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none z-0 w-full px-4 select-none">
-        <!-- Lines will be populated by JS -->
+    <div id="background-text" class="absolute top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none z-0 w-full px-4 select-none">
         <h1 id="line1" class="text-4xl md:text-5xl font-bold text-slate-600 mb-2 min-h-[1.5em]"></h1>
         <h2 id="line2" class="text-5xl md:text-7xl font-extrabold text-slate-200 mb-4 min-h-[1.2em] tracking-tight drop-shadow-lg"></h2>
         <p id="line3" class="text-sm md:text-lg text-slate-400 font-medium min-h-[1.5em] max-w-2xl mx-auto tracking-wide"></p>
@@ -130,7 +129,6 @@
         DRAG & THROW BLOCKS • CLICK TO OPEN
     </div>
 
-    <!-- Control Buttons -->
     <div class="fixed top-4 right-4 z-50 flex gap-3">
         <button id="gravity-toggle" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border border-slate-600 font-medium transition-all flex items-center gap-2 shadow-lg">
             <span class="text-lg">🌍</span>
@@ -142,20 +140,123 @@
         </button>
     </div>
 
-    <!-- Modals for each section -->
     <div id="modal-projects" class="modal">
         <div class="modal-content">
             <button class="close-btn">&times;</button>
             <h2 class="text-3xl font-bold mb-4 text-cyan-400">My Projects</h2>
             <div class="space-y-4">
+                
+                <a href="https://bullcitywoodshop.org" target="_blank" rel="noopener noreferrer" class="block p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition group cursor-pointer">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-cyan-400 group-hover:text-cyan-300">🪵 The Bullcity Wood Shop</h3>
+                        <span class="text-slate-400 group-hover:text-cyan-400 transition">↗</span>
+                    </div>
+                    <p class="text-slate-500 text-sm mt-1">November 2025 - Current</p>
+                    <p class="text-slate-400 mt-2">Created the volunteer information digital database, digitalized the attendance of students and volunteers, automated workflows, cleaned data, established a framework, and improved grants with data visualization using Airtable, JavaScript, and Python.</p>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <span class="px-2 py-1 bg-cyan-400/10 text-cyan-400 text-xs rounded-full">Airtable</span>
+                        <span class="px-2 py-1 bg-yellow-400/10 text-yellow-400 text-xs rounded-full">JavaScript</span>
+                        <span class="px-2 py-1 bg-blue-400/10 text-blue-400 text-xs rounded-full">Python</span>
+                        <span class="px-2 py-1 bg-green-400/10 text-green-400 text-xs rounded-full">Data Visualization</span>
+                        <span class="px-2 py-1 bg-orange-400/10 text-orange-400 text-xs rounded-full">NumPy</span>
+                        <span class="px-2 py-1 bg-pink-400/10 text-pink-400 text-xs rounded-full">Volunteer</span>
+                        <span class="px-2 py-1 bg-purple-400/10 text-purple-400 text-xs rounded-full">NPO</span>
+                        <span class="px-2 py-1 bg-indigo-400/10 text-indigo-400 text-xs rounded-full">Internal Tool Design</span>
+                        <span class="px-2 py-1 bg-teal-400/10 text-teal-400 text-xs rounded-full">API Integration</span>
+                    </div>
+                </a>
+
                 <a href="https://asterism3.github.io/Poop-Master" target="_blank" rel="noopener noreferrer" class="block p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition group cursor-pointer">
                     <div class="flex items-center justify-between">
                         <h3 class="text-xl font-bold text-cyan-400 group-hover:text-cyan-300">💩 Poop Master</h3>
                         <span class="text-slate-400 group-hover:text-cyan-400 transition">↗</span>
                     </div>
+                    <p class="text-slate-500 text-sm mt-1">January 2026</p>
                     <p class="text-slate-400 mt-2">A poop tracker app. Yes, you read that right. Track your digestive health with style!</p>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <span class="px-2 py-1 bg-emerald-400/10 text-emerald-400 text-xs rounded-full">Full-Stack Development</span>
+                        <span class="px-2 py-1 bg-rose-400/10 text-rose-400 text-xs rounded-full">Mobile/Web App</span>
+                        <span class="px-2 py-1 bg-purple-400/10 text-purple-400 text-xs rounded-full">Open Source</span>
+                        <span class="px-2 py-1 bg-cyan-400/10 text-cyan-400 text-xs rounded-full">Real-time Database</span>
+                        <span class="px-2 py-1 bg-teal-400/10 text-teal-400 text-xs rounded-full">Tailwind CSS</span>
+                        <span class="px-2 py-1 bg-yellow-400/10 text-yellow-400 text-xs rounded-full">JavaScript</span>
+                        <span class="px-2 py-1 bg-orange-400/10 text-orange-400 text-xs rounded-full">HTML</span>
+                    </div>
                     <span class="text-cyan-400/70 text-sm mt-2 inline-block">asterism3.github.io/Poop-Master</span>
                 </a>
+                
+                <a href="#" class="block p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition group cursor-pointer">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-cyan-400 group-hover:text-cyan-300">📊 Obsidian Heatmap Tracker Plugin</h3>
+                        <span class="text-slate-400 group-hover:text-cyan-400 transition">↗</span>
+                    </div>
+                    <p class="text-slate-500 text-sm mt-1">December 2025</p>
+                    <p class="text-slate-400 mt-2">Contributed new features and bug fixes (pull requests) for a popular Obsidian plugin used by over 10,000 people worldwide.</p>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <span class="px-2 py-1 bg-purple-400/10 text-purple-400 text-xs rounded-full">Open Source</span>
+                        <span class="px-2 py-1 bg-yellow-400/10 text-yellow-400 text-xs rounded-full">JavaScript</span>
+                        <span class="px-2 py-1 bg-pink-400/10 text-pink-400 text-xs rounded-full">10K+ Users</span>
+                    </div>
+                </a>
+                
+                <div class="block p-4 bg-slate-800 rounded-lg group">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-cyan-400">🤖 FTC Robotics Team #3587</h3>
+                    </div>
+                    <p class="text-slate-500 text-sm mt-1">September 2025 - Current</p>
+                    <p class="text-slate-400 mt-2">Programmer for competitive FIRST Tech Challenge robotics team. Developed autonomous navigation, sensor integration, and teleop control systems.</p>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <span class="px-2 py-1 bg-orange-400/10 text-orange-400 text-xs rounded-full">Java</span>
+                        <span class="px-2 py-1 bg-green-400/10 text-green-400 text-xs rounded-full">OpenCV</span>
+                        <span class="px-2 py-1 bg-cyan-400/10 text-cyan-400 text-xs rounded-full">Autonomous</span>
+                        <span class="px-2 py-1 bg-pink-400/10 text-pink-400 text-xs rounded-full">Android Studio</span>
+                    </div>
+                </div>
+                
+                <div class="block p-4 bg-slate-800 rounded-lg group">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-cyan-400">🤖 FTC Robotics Team #5459</h3>
+                    </div>
+                    <p class="text-slate-500 text-sm mt-1">September 2024 - May 2025</p>
+                    <p class="text-slate-400 mt-2">Programmer building control systems and game strategy algorithms for competition robot. Implemented PID controllers and path planning.</p>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <span class="px-2 py-1 bg-orange-400/10 text-orange-400 text-xs rounded-full">Java</span>
+                        <span class="px-2 py-1 bg-blue-400/10 text-blue-400 text-xs rounded-full">TeleOp</span>
+                        <span class="px-2 py-1 bg-purple-400/10 text-purple-400 text-xs rounded-full">PID Control</span>
+                        <span class="px-2 py-1 bg-yellow-400/10 text-yellow-400 text-xs rounded-full">Sensors</span>
+                    </div>
+                </div>
+                
+                <div class="block p-4 bg-slate-800 rounded-lg group">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-cyan-400">🐕 UniTree Go2 Testing</h3>
+                    </div>
+                    <p class="text-slate-500 text-sm mt-1">August 2025</p>
+                    <p class="text-slate-400 mt-2">Worked with a robotics team to test and refine the Go2's field-mapping workflow. Helped evaluate LiDAR-based SLAM performance, troubleshoot mapping artifacts, and document test results for iterative improvements.</p>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <span class="px-2 py-1 bg-green-400/10 text-green-400 text-xs rounded-full">LiDAR</span>
+                        <span class="px-2 py-1 bg-blue-400/10 text-blue-400 text-xs rounded-full">SLAM</span>
+                        <span class="px-2 py-1 bg-purple-400/10 text-purple-400 text-xs rounded-full">Robotics</span>
+                        <span class="px-2 py-1 bg-cyan-400/10 text-cyan-400 text-xs rounded-full">Field Mapping</span>
+                        <span class="px-2 py-1 bg-yellow-400/10 text-yellow-400 text-xs rounded-full">Testing & QA</span>
+                    </div>
+                </div>
+                
+                <div class="block p-4 bg-slate-800 rounded-lg group">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-cyan-400">💊 Medicine Detection System</h3>
+                    </div>
+                    <p class="text-slate-500 text-sm mt-1">In Progress</p>
+                    <p class="text-slate-400 mt-2">Building a computer vision system to detect and identify medications and supplements for grandparents, helping ensure they take the right pills at the right time.</p>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <span class="px-2 py-1 bg-red-400/10 text-red-400 text-xs rounded-full">YOLO v11</span>
+                        <span class="px-2 py-1 bg-blue-400/10 text-blue-400 text-xs rounded-full">Python</span>
+                        <span class="px-2 py-1 bg-green-400/10 text-green-400 text-xs rounded-full">Computer Vision</span>
+                        <span class="px-2 py-1 bg-pink-400/10 text-pink-400 text-xs rounded-full">Healthcare</span>
+                        <span class="px-2 py-1 bg-purple-400/10 text-purple-400 text-xs rounded-full">Object Detection</span>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -164,19 +265,17 @@
         <div class="modal-content">
             <button class="close-btn">&times;</button>
             <h2 class="text-3xl font-bold mb-4 text-pink-400">My Art</h2>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="aspect-square bg-slate-800 rounded-lg flex items-center justify-center text-slate-500 hover:text-white transition cursor-pointer">
-                    Digital 01
+            <div class="text-center py-8">
+                <div class="text-6xl mb-6">🎨</div>
+                <p class="text-xl text-slate-300 leading-relaxed mb-4">
+                    I have been a drawer for as long as I can remember... since I have memories.
+                </p>
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-pink-400/20 text-pink-400 rounded-full">
+                    <span class="text-lg">🚧</span>
+                    <span class="font-medium">This page is currently under construction</span>
+                    <span class="text-lg">🚧</span>
                 </div>
-                <div class="aspect-square bg-slate-800 rounded-lg flex items-center justify-center text-slate-500 hover:text-white transition cursor-pointer">
-                    Sketch 02
-                </div>
-                <div class="aspect-square bg-slate-800 rounded-lg flex items-center justify-center text-slate-500 hover:text-white transition cursor-pointer">
-                    3D Model 03
-                </div>
-                <div class="aspect-square bg-slate-800 rounded-lg flex items-center justify-center text-slate-500 hover:text-white transition cursor-pointer">
-                    Painting 04
-                </div>
+                <p class="text-slate-500 mt-6 text-sm">Check back soon for my artwork gallery!</p>
             </div>
         </div>
     </div>
@@ -197,7 +296,6 @@
         </div>
     </div>
 
-    <!-- Full Blog Post Modal -->
     <div id="modal-blog-babysitting" class="modal">
         <div class="modal-content max-w-2xl">
             <button class="close-btn">&times;</button>
@@ -232,18 +330,55 @@
             <button class="close-btn">&times;</button>
             <h2 class="text-3xl font-bold mb-4 text-green-400">Social Media</h2>
             <div class="flex flex-col space-y-3">
-                <a href="#" class="flex items-center p-3 bg-slate-800 rounded-lg hover:bg-[#1DA1F2] hover:text-white transition group">
-                    <span class="font-bold">Twitter / X</span>
+                <a href="https://instagram.com/asterlitee" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-slate-800 rounded-lg hover:bg-gradient-to-r hover:from-[#833AB4] hover:via-[#E1306C] hover:to-[#F77737] hover:text-white transition group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">📸</span>
+                        <div>
+                            <span class="font-bold block">Instagram</span>
+                            <span class="text-slate-400 text-sm group-hover:text-white/80">@asterlitee</span>
+                        </div>
+                    </div>
+                    <span class="text-slate-400 group-hover:text-white">↗</span>
                 </a>
-                <a href="#" class="flex items-center p-3 bg-slate-800 rounded-lg hover:bg-[#333] hover:text-white transition group">
-                    <span class="font-bold">GitHub</span>
+                <a href="https://github.com/asterism3" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-slate-800 rounded-lg hover:bg-[#333] hover:text-white transition group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">💻</span>
+                        <div>
+                            <span class="font-bold block">GitHub</span>
+                            <span class="text-slate-400 text-sm group-hover:text-white/80">@asterism3</span>
+                        </div>
+                    </div>
+                    <span class="text-slate-400 group-hover:text-white">↗</span>
                 </a>
-                <a href="#" class="flex items-center p-3 bg-slate-800 rounded-lg hover:bg-[#E1306C] hover:text-white transition group">
-                    <span class="font-bold">Instagram</span>
-                </a>
-                <a href="#" class="flex items-center p-3 bg-slate-800 rounded-lg hover:bg-[#0077b5] hover:text-white transition group">
-                    <span class="font-bold">LinkedIn</span>
-                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-funfact" class="modal">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2 class="text-3xl font-bold mb-4 text-purple-400">Fun Facts About Me</h2>
+            <div class="space-y-4">
+                <div class="p-4 bg-slate-800 rounded-lg border-l-4 border-purple-400">
+                    <span class="text-2xl mb-2 block">🍵</span>
+                    <p class="text-slate-300">I've been a matcha lover since 2016 — that's almost a decade of green tea obsession!</p>
+                </div>
+                <div class="p-4 bg-slate-800 rounded-lg border-l-4 border-cyan-400">
+                    <span class="text-2xl mb-2 block">📚</span>
+                    <p class="text-slate-300">I'm an avid reader and dreamer. Books are my portal to infinite worlds.</p>
+                </div>
+                <div class="p-4 bg-slate-800 rounded-lg border-l-4 border-pink-400">
+                    <span class="text-2xl mb-2 block">🎨</span>
+                    <p class="text-slate-300">I've been drawing since I could hold a pencil — it's my oldest creative outlet.</p>
+                </div>
+                <div class="p-4 bg-slate-800 rounded-lg border-l-4 border-yellow-400">
+                    <span class="text-2xl mb-2 block">💡</span>
+                    <p class="text-slate-300">I love building things that help people — from databases to poop trackers!</p>
+                </div>
+                <div class="p-4 bg-slate-800 rounded-lg border-l-4 border-green-400">
+                    <span class="text-2xl mb-2 block">🌟</span>
+                    <p class="text-slate-300">I'm a high school senior studying in the US, chasing my dreams one project at a time.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -292,10 +427,11 @@
 
         // Define our interactive bodies (The Menu Items)
         const categories = [
-            { id: 'projects', label: 'PROJECTS', color: '#22d3ee', x: 0.3, y: 0.2 },
-            { id: 'art', label: 'MY ART', color: '#f472b6', x: 0.7, y: 0.2 },
-            { id: 'blogs', label: 'BLOGS', color: '#facc15', x: 0.3, y: 0.5 },
-            { id: 'socials', label: 'SOCIALS', color: '#4ade80', x: 0.7, y: 0.5 }
+            { id: 'projects', label: 'PROJECTS', color: '#22d3ee', x: 0.25, y: 0.25 },
+            { id: 'art', label: 'MY ART', color: '#f472b6', x: 0.75, y: 0.25 },
+            { id: 'blogs', label: 'BLOGS', color: '#facc15', x: 0.25, y: 0.55 },
+            { id: 'socials', label: 'SOCIALS', color: '#4ade80', x: 0.5, y: 0.55 },
+            { id: 'funfact', label: 'FUN FACT', color: '#a78bfa', x: 0.75, y: 0.55 }
         ];
 
         const bodies = [];
@@ -328,9 +464,17 @@
             const y = Math.random() * window.innerHeight * 0.5; // Start top half
             const size = Math.random() * 25 + 10;
             
-            // Mostly dark shapes, some colored ones for pop
+            // Mostly dark shapes, some colored ones for pop - all with 50% opacity
             const isColored = Math.random() > 0.7;
-            const color = isColored ? themeColors[Math.floor(Math.random() * themeColors.length)] : '#334155';
+            const baseColor = isColored ? themeColors[Math.floor(Math.random() * themeColors.length)] : '#334155';
+            // Convert hex to rgba with 50% opacity
+            const hexToRgba = (hex, alpha) => {
+                const r = parseInt(hex.slice(1, 3), 16);
+                const g = parseInt(hex.slice(3, 5), 16);
+                const b = parseInt(hex.slice(5, 7), 16);
+                return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+            };
+            const color = hexToRgba(baseColor, 0.4);
             
             let shape;
             if (Math.random() > 0.5) {
