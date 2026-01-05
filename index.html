@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Interactive World</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #0f172a;
+            color: #fff;
+            /* Grid Background Pattern */
+            background-image: 
+                linear-gradient(rgba(30, 41, 59, 0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            /* Vignette effect */
+            background: radial-gradient(circle at center, transparent 0%, #0f172a 100%);
+        }
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            background: #1e293b;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid #334155;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close-btn:hover {
+            color: #fff;
+        }
+        .instruction {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            color: #94a3b8;
+            pointer-events: none;
+            text-align: center;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        /* Custom scrollbar for modals */
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-content::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        .modal-content::-webkit-scrollbar-thumb {
+            background: #475569; 
+            border-radius: 4px;
+        }
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: #64748b; 
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+    
+    <div class="instruction">
+        DRAG & THROW BLOCKS • CLICK TO OPEN
+    </div>
+
+    <!-- Modals for each section -->
+    <div id="modal-projects" class="modal">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2 class="text-3xl font-bold mb-4 text-cyan-400">My Projects</h2>
+            <div class="space-y-4">
+                <div class="p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition">
+                    <h3 class="text-xl font-bold">Project Alpha</h3>
+                    <p class="text-slate-400">A physics-based game engine built from scratch.</p>
+                </div>
+                <div class="p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition">
+                    <h3 class="text-xl font-bold">Neural Net Visualizer</h3>
+                    <p class="text-slate-400">Interactive web tool to see how AI learns.</p>
+                </div>
+                <div class="p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition">
+                    <h3 class="text-xl font-bold">EcoTracker</h3>
+                    <p class="text-slate-400">Mobile app for tracking carbon footprint.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-art" class="modal">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2 class="text-3xl font-bold mb-4 text-pink-400">My Art</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="aspect-square bg-slate-800 rounded-lg flex items-center justify-center text-slate-500 hover:text-white transition cursor-pointer">
+                    Digital 01
+                </div>
+                <div class="aspect-square bg-slate-800 rounded-lg flex items-center justify-center text-slate-500 hover:text-white transition cursor-pointer">
+                    Sketch 02
+                </div>
+                <div class="aspect-square bg-slate-800 rounded-lg flex items-center justify-center text-slate-500 hover:text-white transition cursor-pointer">
+                    3D Model 03
+                </div>
+                <div class="aspect-square bg-slate-800 rounded-lg flex items-center justify-center text-slate-500 hover:text-white transition cursor-pointer">
+                    Painting 04
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-blogs" class="modal">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2 class="text-3xl font-bold mb-4 text-yellow-400">Blogs</h2>
+            <article class="mb-6 border-b border-slate-700 pb-4">
+                <h3 class="text-xl font-bold mb-2">The Future of Web Interactivity</h3>
+                <p class="text-slate-400 text-sm mb-2">October 24, 2023</p>
+                <p class="text-slate-300">Why flat websites are becoming a thing of the past and how physics brings life to UI.</p>
+            </article>
+            <article class="mb-6 border-b border-slate-700 pb-4">
+                <h3 class="text-xl font-bold mb-2">Learning 3D Modeling</h3>
+                <p class="text-slate-400 text-sm mb-2">September 12, 2023</p>
+                <p class="text-slate-300">My journey into Blender and how it changed my design perspective.</p>
+            </article>
+        </div>
+    </div>
+
+    <div id="modal-socials" class="modal">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2 class="text-3xl font-bold mb-4 text-green-400">Social Media</h2>
+            <div class="flex flex-col space-y-3">
+                <a href="#" class="flex items-center p-3 bg-slate-800 rounded-lg hover:bg-[#1DA1F2] hover:text-white transition group">
+                    <span class="font-bold">Twitter / X</span>
+                </a>
+                <a href="#" class="flex items-center p-3 bg-slate-800 rounded-lg hover:bg-[#333] hover:text-white transition group">
+                    <span class="font-bold">GitHub</span>
+                </a>
+                <a href="#" class="flex items-center p-3 bg-slate-800 rounded-lg hover:bg-[#E1306C] hover:text-white transition group">
+                    <span class="font-bold">Instagram</span>
+                </a>
+                <a href="#" class="flex items-center p-3 bg-slate-800 rounded-lg hover:bg-[#0077b5] hover:text-white transition group">
+                    <span class="font-bold">LinkedIn</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Module aliases
+        const Engine = Matter.Engine,
+              Render = Matter.Render,
+              Runner = Matter.Runner,
+              Bodies = Matter.Bodies,
+              Composite = Matter.Composite,
+              MouseConstraint = Matter.MouseConstraint,
+              Mouse = Matter.Mouse,
+              Events = Matter.Events,
+              Common = Matter.Common,
+              Vector = Matter.Vector;
+
+        // Create engine
+        const engine = Engine.create();
+        const world = engine.world;
+
+        // Reduce gravity slightly for a floaty feel
+        engine.gravity.y = 0.5;
+
+        // Create renderer
+        const container = document.getElementById('canvas-container');
+        const render = Render.create({
+            element: container,
+            engine: engine,
+            options: {
+                width: window.innerWidth,
+                height: window.innerHeight,
+                background: 'transparent',
+                wireframes: false, // We want full shapes
+                showAngleIndicator: false
+            }
+        });
+
+        // Add resizing
+        window.addEventListener('resize', () => {
+            render.canvas.width = window.innerWidth;
+            render.canvas.height = window.innerHeight;
+            // Reposition walls (will implement logic to remove/re-add walls properly or update bounds)
+            updateWalls();
+        });
+
+        // Define our interactive bodies (The Menu Items)
+        const categories = [
+            { id: 'projects', label: 'PROJECTS', color: '#22d3ee', x: 0.3, y: 0.2 },
+            { id: 'art', label: 'MY ART', color: '#f472b6', x: 0.7, y: 0.2 },
+            { id: 'blogs', label: 'BLOGS', color: '#facc15', x: 0.3, y: 0.5 },
+            { id: 'socials', label: 'SOCIALS', color: '#4ade80', x: 0.7, y: 0.5 }
+        ];
+
+        const bodies = [];
+        
+        categories.forEach(cat => {
+            const x = window.innerWidth * cat.x;
+            const y = window.innerHeight * cat.y;
+            // Create a chamfered rectangle for a softer look
+            const body = Bodies.rectangle(x, y, 160, 60, {
+                chamfer: { radius: 10 },
+                render: {
+                    fillStyle: cat.color,
+                    strokeStyle: '#fff',
+                    lineWidth: 2
+                },
+                label: cat.id, // Used to identify click
+                restitution: 0.9 // Bouncy
+            });
+            // Attach custom property for text rendering
+            body.customLabel = cat.label;
+            bodies.push(body);
+        });
+
+        // Add random shapes for fun/aesthetic
+        const randomShapes = [];
+        for (let i = 0; i < 15; i++) {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight * 0.5; // Start top half
+            const size = Math.random() * 30 + 10;
+            
+            let shape;
+            if (Math.random() > 0.5) {
+                shape = Bodies.circle(x, y, size, {
+                    render: { fillStyle: '#334155' },
+                    restitution: 0.7
+                });
+            } else {
+                shape = Bodies.polygon(x, y, Math.round(Math.random() * 5 + 3), size, {
+                    render: { fillStyle: '#1e293b' },
+                    restitution: 0.7
+                });
+            }
+            randomShapes.push(shape);
+        }
+
+        // Walls
+        let walls = [];
+        function updateWalls() {
+            Composite.remove(world, walls);
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const wallThickness = 60;
+            
+            walls = [
+                Bodies.rectangle(width/2, -wallThickness/2, width, wallThickness, { isStatic: true, render: { visible: false } }), // Top
+                Bodies.rectangle(width/2, height + wallThickness/2, width, wallThickness, { isStatic: true, render: { visible: false } }), // Bottom
+                Bodies.rectangle(width + wallThickness/2, height/2, wallThickness, height, { isStatic: true, render: { visible: false } }), // Right
+                Bodies.rectangle(-wallThickness/2, height/2, wallThickness, height, { isStatic: true, render: { visible: false } }) // Left
+            ];
+            Composite.add(world, walls);
+        }
+
+        // Add everything to world
+        Composite.add(world, [...bodies, ...randomShapes]);
+        updateWalls();
+
+        // Add mouse control
+        const mouse = Mouse.create(render.canvas);
+        const mouseConstraint = MouseConstraint.create(engine, {
+            mouse: mouse,
+            constraint: {
+                stiffness: 0.2,
+                render: {
+                    visible: false
+                }
+            }
+        });
+
+        Composite.add(world, mouseConstraint);
+
+        // Keep the mouse in sync with rendering
+        render.mouse = mouse;
+
+        // "Curious" Mouse Interaction (Repulsion)
+        Events.on(engine, 'beforeUpdate', function() {
+            if (!mouse.position.x || !mouse.position.y) return;
+            
+            const allBodies = Composite.allBodies(world);
+            const mousePos = mouse.position;
+            
+            allBodies.forEach(body => {
+                if (body.isStatic) return;
+
+                const dx = body.position.x - mousePos.x;
+                const dy = body.position.y - mousePos.y;
+                const distanceSq = dx * dx + dy * dy;
+                
+                // If mouse is close (within 150px) and not dragging
+                if (distanceSq < 22500 && distanceSq > 100 && mouseConstraint.body !== body) {
+                    const forceMagnitude = 0.00005 * body.mass;
+                    
+                    Matter.Body.applyForce(body, body.position, {
+                        x: (dx / Math.sqrt(distanceSq)) * forceMagnitude,
+                        y: (dy / Math.sqrt(distanceSq)) * forceMagnitude
+                    });
+                }
+            });
+        });
+        
+        // Initial Spin/Velocity for randomness
+        bodies.forEach(body => {
+            Matter.Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.1);
+            Matter.Body.setVelocity(body, { x: (Math.random() - 0.5) * 5, y: (Math.random() - 0.5) * 5 });
+        });
+
+        // Run the engine
+        Render.run(render);
+        const runner = Runner.create();
+        Runner.run(runner, engine);
+
+        // Custom Rendering for Text and 3D Effect on Bodies
+        Events.on(render, 'afterRender', function() {
+            const ctx = render.context;
+            
+            // We iterate over all bodies in the world to ensure we catch everything if needed, 
+            // but for custom labels we only care about the menu items.
+            // Using the specific 'bodies' array we created earlier is safer for this loop.
+            
+            bodies.forEach(body => {
+                if (!body.customLabel) return;
+
+                const { x, y } = body.position;
+                const angle = body.angle;
+                const width = 160; 
+                const height = 60;
+                
+                ctx.translate(x, y);
+                ctx.rotate(angle);
+                
+                // 1. Draw Shadow/Glow
+                ctx.shadowColor = body.render.fillStyle;
+                ctx.shadowBlur = 15;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 0;
+
+                // 2. Draw Border
+                ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+                ctx.lineWidth = 3;
+                ctx.strokeRect(-width/2, -height/2, width, height);
+                
+                // Reset shadow for text
+                ctx.shadowBlur = 0;
+
+                // 3. Draw Text
+                ctx.fillStyle = '#0f172a'; // Dark text on bright background
+                ctx.font = '800 18px "Space Grotesk"';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(body.customLabel, 0, 0);
+
+                // 4. Shine Effect
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.beginPath();
+                ctx.moveTo(-width/2 + 10, -height/2 + 5);
+                ctx.lineTo(width/2 - 50, -height/2 + 5);
+                ctx.lineTo(width/2 - 70, -height/2 + 20);
+                ctx.lineTo(-width/2 + 30, -height/2 + 20);
+                ctx.fill();
+
+                ctx.rotate(-angle);
+                ctx.translate(-x, -y);
+            });
+
+            // Draw names on random shapes if we want, or just leave them abstract
+        });
+
+        // Click Handling
+        let isDragging = false;
+        
+        Events.on(mouseConstraint, 'startdrag', () => {
+            isDragging = true;
+        });
+
+        Events.on(mouseConstraint, 'enddrag', () => {
+            setTimeout(() => { isDragging = false; }, 50); // Small delay to prevent click firing after drag
+        });
+
+        Events.on(mouseConstraint, 'mousedown', function(event) {
+            const mousePosition = event.mouse.position;
+            const bodiesUnder = Matter.Query.point(bodies, mousePosition);
+            
+            if (bodiesUnder.length > 0 && !isDragging) {
+                const clickedBody = bodiesUnder[0];
+                const modalId = `modal-${clickedBody.label}`;
+                openModal(modalId);
+            }
+        });
+
+        // Prevent opening if it was a drag
+        // Actually, 'mousedown' fires before drag. Let's use 'mouseup' and check if we dragged.
+        // Re-implementing interaction logic for better UX:
+        // If mouse down and mouse up happen on the same body with minimal movement, it's a click.
+        
+        let mouseDownPos = null;
+        let clickedBodyLabel = null;
+
+        Events.on(mouseConstraint, 'mousedown', (event) => {
+            mouseDownPos = { ...event.mouse.position };
+            const bodiesUnder = Matter.Query.point(bodies, mouseDownPos);
+            if (bodiesUnder.length > 0) {
+                clickedBodyLabel = bodiesUnder[0].label;
+            } else {
+                clickedBodyLabel = null;
+            }
+        });
+
+        Events.on(mouseConstraint, 'mouseup', (event) => {
+            if (!clickedBodyLabel) return;
+            
+            const mouseUpPos = event.mouse.position;
+            const dist = Vector.magnitude(Vector.sub(mouseDownPos, mouseUpPos));
+            
+            // If moved less than 5 pixels, count as click
+            if (dist < 5) {
+                const modalId = `modal-${clickedBodyLabel}`;
+                openModal(modalId);
+            }
+            clickedBodyLabel = null;
+        });
+
+
+        // Modal Logic
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.add('active');
+                // Freeze physics engine (optional, maybe just pause it?)
+                // runner.enabled = false; 
+                // Or maybe just let it run in background! It's cooler.
+            }
+        }
+
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.target.closest('.modal').classList.remove('active');
+                // runner.enabled = true;
+            });
+        });
+
+        // Close on click outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+
+    </script>
+</body>
+</html>
