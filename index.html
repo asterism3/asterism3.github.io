@@ -328,11 +328,31 @@
         </div>
     </div>
 
-    <div id="modal-socials" class="modal">
+    <div id="modal-contact" class="modal">
         <div class="modal-content">
             <button class="close-btn">&times;</button>
-            <h2 class="text-3xl font-bold mb-4 text-green-400">Social Media</h2>
+            <h2 class="text-3xl font-bold mb-4 text-green-400">Contact Me</h2>
             <div class="flex flex-col space-y-3">
+                <a href="mailto:apricot3616@gmail.com" class="flex items-center justify-between p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">✉️</span>
+                        <div>
+                            <span class="font-bold block">Email</span>
+                            <span class="text-slate-400 text-sm group-hover:text-white/80">apricot3616@gmail.com</span>
+                        </div>
+                    </div>
+                    <span class="text-slate-400 group-hover:text-white">↗</span>
+                </a>
+                <a href="tel:9843120958" class="flex items-center justify-between p-4 bg-slate-800 rounded-lg hover:bg-slate-700 transition group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">📞</span>
+                        <div>
+                            <span class="font-bold block">Phone</span>
+                            <span class="text-slate-400 text-sm group-hover:text-white/80">984-312-0958</span>
+                        </div>
+                    </div>
+                    <span class="text-slate-400 group-hover:text-white">↗</span>
+                </a>
                 <a href="https://instagram.com/asterlitee" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-slate-800 rounded-lg hover:bg-gradient-to-r hover:from-[#833AB4] hover:via-[#E1306C] hover:to-[#F77737] hover:text-white transition group">
                     <div class="flex items-center gap-3">
                         <span class="text-2xl">📸</span>
@@ -433,7 +453,7 @@
             { id: 'projects', label: 'PROJECTS', color: '#22d3ee', x: 0.25, y: 0.25 },
             { id: 'art', label: 'MY ART', color: '#f472b6', x: 0.75, y: 0.25 },
             { id: 'blogs', label: 'BLOGS', color: '#facc15', x: 0.25, y: 0.55 },
-            { id: 'socials', label: 'SOCIALS', color: '#4ade80', x: 0.5, y: 0.55 },
+            { id: 'contact', label: 'CONTACT ME', color: '#4ade80', x: 0.5, y: 0.55 },
             { id: 'funfact', label: 'FUN FACT', color: '#a78bfa', x: 0.75, y: 0.55 }
         ];
 
@@ -673,17 +693,6 @@
 
         Events.on(mouseConstraint, 'enddrag', () => {
             setTimeout(() => { isDragging = false; }, 50); // Small delay to prevent click firing after drag
-        });
-
-        Events.on(mouseConstraint, 'mousedown', function(event) {
-            const mousePosition = event.mouse.position;
-            const bodiesUnder = Matter.Query.point(bodies, mousePosition);
-            
-            if (bodiesUnder.length > 0 && !isDragging) {
-                const clickedBody = bodiesUnder[0];
-                const modalId = `modal-${clickedBody.label}`;
-                openModal(modalId);
-            }
         });
 
         // Prevent opening if it was a drag
